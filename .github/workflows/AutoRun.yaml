@@ -2,7 +2,7 @@ name : AutoRun
 on : [push]
 
 jobs:
-name: Automatic Run
+name: AutomaticRun
 run-shell-commands:
 runs-on: windows-latest
 steps:
