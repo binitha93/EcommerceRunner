@@ -9,4 +9,4 @@ steps:
 run: echo "ECommerce site automation"
  
 -name: Run tests
-run: mvn testt
+run: mvn test
