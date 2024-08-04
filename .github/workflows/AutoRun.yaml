@@ -2,11 +2,11 @@ name : AutoRun
 on : [push]
 
 jobs:
-	name: Automatic Run
-	run-shell-commands:
-		runs-on: windows-latest
-		steps:
-			name: Echo name
-			run: echo "ECommerce site automation"
-			name: Run tests
-			run: mvn test
+name: Automatic Run
+run-shell-commands:
+runs-on: windows-latest
+steps:
+name: Echo name
+run: echo "ECommerce site automation"
+name: Run tests
+run: mvn testt
