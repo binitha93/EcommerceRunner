@@ -7,6 +7,5 @@ runs-on: windows-latest
 steps:
 -name: Echo name
 run: echo "ECommerce site automation"
- 
--name: Run tests
+
 run: mvn test
