@@ -6,3 +6,4 @@ jobs:
   runs-on: windows-latest
   steps:
    -run: echo "ECommerce site automation"
+   -uses: actions/checkout@v4
