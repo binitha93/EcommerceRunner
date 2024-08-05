@@ -6,4 +6,4 @@ jobs:
   runs-on: windows-latest
   steps:
    - run: echo "ECommerce site automation"
-     run: mvn test
+   - run: mvn test
