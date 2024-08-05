@@ -6,4 +6,14 @@ jobs:
   runs-on: windows-latest
   steps:
    - run: echo "ECommerce site automation"
-   - run: mvn test
+  
+   - name: Check out Repository
+     uses: actions/checkout@v3
+   - name: Set up JDK
+     uses: actions/setup-java@v3
+     with:
+       java-version: 17
+   - name: Packaging Jar
+     id: packaging-jar
+     shell: bash
+     run: mvn clean install
