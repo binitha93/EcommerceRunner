@@ -55,7 +55,23 @@
   <groupId>org.apache.maven.plugins</groupId>
   <artifactId>maven-surefire-plugin</artifactId>
   <version>3.2.5</version>
+  <configuration>
+                    <parallel></parallel>
+                    <threadCount>1</threadCount>
+                    <includes>
+                        <include>**/*Runner.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*Abstract*Test.java</exclude>
+                    </excludes>
+                </configuration>
   </plugin>
   </plugins>
   </build>
+<!--  <profiles>
+  <profile>
+  <id>test</id>
+  <scope></scope>
+  </profile>
+  </profiles>-->
 </project>
