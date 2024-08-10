@@ -61,9 +61,6 @@
                     <includes>
                         <include>**/*Runner.java</include>
                     </includes>
-                    <excludes>
-                        <exclude>**/*Abstract*Test.java</exclude>
-                    </excludes>
                 </configuration>
   </plugin>
   </plugins>
