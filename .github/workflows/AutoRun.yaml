@@ -6,4 +6,27 @@ jobs:
   runs-on: windows-latest
   steps:
    - run: echo "ECommerce site automation"
-   - run: mvn test
+  
+   - name: Check out Repository
+     uses: actions/checkout@v3
+   - name: Set up JDK
+     uses: actions/setup-java@v3
+     with:
+       java-version: 17
+       distribution: 'oracle'
+   - name: Packaging Jar
+     id: packaging-jar
+     shell: bash
+     run: mvn clean install
+   - name: Test Report
+     uses: phoenix-actions/test-reporting@v8
+     id: test-report               # Set ID reference for step
+     if: success() || failure()    # run this step even if previous step failed
+     with:
+      name: JEST Tests            # Name of the check run which will be created
+      path: reports/jest-*.xml    # Path to test results
+      reporter: jest-junit        # Format of test results
+
+   - name: Read output variables
+     run: |
+       echo "url is ${{ steps.test-report.outputs.runHtmlUrl }}"
