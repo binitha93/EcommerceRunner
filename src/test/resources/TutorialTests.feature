@@ -1,28 +1,18 @@
 #Author: binitha93@gmail.com
-#Keywords Summary :
-#Feature: List of scenarios.
-#Scenario: Business rule through list of steps with arguments.
-#Given: Some precondition step
-#When: Some key actions
-#Then: To observe outcomes or validation
-#And,But: To enumerate more Given,When,Then steps
-#Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
-#Examples: Container for s table
-#Background: List of steps run before each of the scenarios
-#""" (Doc Strings)
-#| (Data Tables)
-#@ (Tags/Labels):To group Scenarios
-#<> (placeholder)
-#""
-## (Comments)
-#Sample Feature Definition Template
 
 Feature: Selection of dropdown values
   I want to select an element from dropdown
 
-@dropdown
-  Scenario: Dropdown Tests
-    Given I am in the dropdown test application
+@dropdown @edge
+  Scenario: Dropdown Tests using edge
+    Given I open edge browser
+    And I am in the dropdown test application
+    When I select an element from dropdown
+    Then I validate the selection
+@dropdown @firefox
+  Scenario: Dropdown Tests using firefox
+    Given I open firefox browser
+    And I am in the dropdown test application
     When I select an element from dropdown
     Then I validate the selection
 @fileupload    

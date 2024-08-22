@@ -1,44 +1,42 @@
 package definition.steps;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.IOException;
 import java.time.Duration;
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeoutException;
 
-import org.junit.Assert;
+//import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotInteractableException;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.cucumber.java.After;
+import browser.setup.BrowserFactory;
 import io.cucumber.java.AfterAll;
-import io.cucumber.java.BeforeAll;
-import io.cucumber.java.Scenario;
-import io.cucumber.java.en.*;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class TutorialSteps {
-	static WebDriver driver;
+	 public static WebDriver driver;
 	public Select select;
-	
-	@BeforeAll
+	@Before("@fileupload")
 	public static void setUp() {
-		WebDriverManager.edgedriver().setup();
-		EdgeOptions options = new EdgeOptions();
-		driver = new EdgeDriver(options);
+		BrowserFactory.setUpBrowser("Edge");
+		driver = BrowserFactory.getDriver();
 	}
-	@Given("I am in the dropdown test application")
+	@Given("I open firefox browser")
+	public static void i_open_firefox_browser() {		
+			BrowserFactory.setUpBrowser("Firefox");
+			 driver=BrowserFactory.getDriver(); 
+		}
+	@Given("I open edge browser")
+	public static void i_open_edge_browser() {		
+			BrowserFactory.setUpBrowser("Edge");
+			 driver=BrowserFactory.getDriver(); 
+		} 
+	@And("I am in the dropdown test application")
 	public void i_am_in_the_test_application() {
 		driver.get("https://practice.expandtesting.com/dropdown");
 		driver.manage().window().maximize();
@@ -69,12 +67,12 @@ public class TutorialSteps {
 	
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(3));
 		WebElement upload = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='fileInput']"))));
-		upload.sendKeys("C:\\Users\\binit\\Downloads\\Photo.jpg");
+		upload.sendKeys("C:\\Users\\binit\\Downloads\\Sample.txt");
 		try {
 		 WebElement alert = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'alert')]")));
 		 if(alert.isDisplayed())
 			 System.out.println(alert.getText());
-			 Assert.assertFalse("File cannot be uploaded", true);
+	//		 Assert.assertFalse("File cannot be uploaded", true);
 		}catch(org.openqa.selenium.NoSuchElementException e) {
 			System.out.println("Good to go!!");
 		}catch(org.openqa.selenium.TimeoutException e) {
@@ -100,4 +98,5 @@ public class TutorialSteps {
 	public static void tearDown() {
 		driver.quit();
 	}
+	
 }

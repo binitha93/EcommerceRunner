@@ -1,2 +1,6 @@
+runner\browser\FirefoxRunner.class
+runner\tutorial\TutorialRunner.class
+runner\browser\EdgeRunner.class
 definition\steps\StepDefinitions.class
+definition\steps\TutorialSteps.class
 runner\ecommerce\EcommerceRunner.class
