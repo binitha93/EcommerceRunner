@@ -23,17 +23,14 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import definition.steps.Hooks;
 
 public class StepDefinitions {
-
-	public static WebDriver driver;
-
-	@Before("@kids")
-	public static void i_open_firefox_browser() {
-		BrowserFactory.setUpBrowser("Firefox");
-		driver = BrowserFactory.getDriver();
+	WebDriver driver;
+	public StepDefinitions(){
+	this.driver =Hooks.getDriver();
 	}
-
+	
 	@Given("I am in e-commerce application")
 	public void i_am_in_e_commerce_application() {
 		driver.get("https://www.flipkart.com/");
@@ -71,9 +68,6 @@ public class StepDefinitions {
 
 	}
 	
-	@AfterAll
-	public static void tearDown() {
-		driver.quit();
-	}
+
 
 }
