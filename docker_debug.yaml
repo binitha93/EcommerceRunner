@@ -1,0 +1,69 @@
+version: "3.8"
+services:
+  selenium-hub:
+    image: selenium/hub:4.0.0
+    container_name: selenium-hub
+    ports:
+      - "4444:4444" # Port for Selenium Grid Hub
+    networks:
+      - selenium-grid-network
+
+  chrome-node:
+    image: selenium/node-chrome-debug:latest
+    container_name: chrome-node
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    ports:
+      - "5901:5900" # VNC port exposed for debugging
+    networks:
+      - selenium-grid-network
+
+  firefox-node:
+    image: selenium/node-firefox-debug:latest
+    container_name: firefox-node
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    ports:
+      - "5902:5900" # VNC port exposed for debugging
+    networks:
+      - selenium-grid-network
+
+  edge-node:
+    image: selenium/node-edge:latest
+    container_name: edge-node
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    ports:
+      - "5903:5900" # VNC port exposed for debugging
+    networks:
+      - selenium-grid-network
+
+  opera-node:
+    image: selenium/node-opera-debug:latest
+    container_name: opera-node
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    ports:
+      - "5904:5900" # VNC port exposed for debugging
+    networks:
+      - selenium-grid-network
+
+networks:
+  selenium-grid-network:
+    driver: bridge

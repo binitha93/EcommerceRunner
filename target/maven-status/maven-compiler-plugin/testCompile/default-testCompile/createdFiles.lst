@@ -1,6 +1,7 @@
-runner\browser\FirefoxRunner.class
-runner\tutorial\TutorialRunner.class
-runner\browser\EdgeRunner.class
+runner\ecommerce\parallel\ChromeRemoteRunner.class
+runner\ecommerce\parallel\EdgeRemoteRunner.class
 definition\steps\StepDefinitions.class
-definition\steps\TutorialSteps.class
+definition\steps\Hooks.class
 runner\ecommerce\EcommerceRunner.class
+runner\ecommerce\parallel\FirefoxRemoteRunner.class
+runner\ecommerce\ParallelRunner.class

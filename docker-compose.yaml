@@ -1,0 +1,62 @@
+version: "4"
+services:
+  selenium-hub:
+    image: selenium/hub:latest
+    container_name: selenium-hub
+    ports:
+      - "4444:4444" # Selenium Grid Hub exposed to the host
+    networks:
+      - selenium-grid-network
+
+  chrome-node:
+    image: selenium/node-chrome:latest
+    container_name: chrome-node
+    deploy:
+     resources:
+      limits:
+       memory: 512M
+       cpus: "0.5"
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    depends_on:
+      - selenium-hub
+    networks:
+      - selenium-grid-network
+
+  firefox-node:
+    image: selenium/node-firefox:latest
+    container_name: firefox-node
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    depends_on:
+      - selenium-hub
+    networks:
+      - selenium-grid-network
+
+  edge-node:
+    image: selenium/node-edge:latest
+    container_name: edge-node
+    deploy:
+     resources:
+      limits:
+       memory: 1024M
+       cpus: "1.0"
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - NODE_MAX_INSTANCES=3
+      - NODE_MAX_SESSION=2
+    depends_on:
+      - selenium-hub
+    networks:
+      - selenium-grid-network
+
+
+networks:
+  selenium-grid-network:
+    driver: bridge

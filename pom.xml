@@ -10,6 +10,7 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<aspectj.version>1.9.22</aspectj.version>
 	</properties>
 	<dependencies>
 		<!-- selenium-java -->
@@ -49,7 +50,30 @@
 			<version>5.10.2</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
+		<dependency>
+		    <groupId>io.qameta.allure</groupId>
+		    <artifactId>allure-junit5</artifactId>
+		    <version>2.28.1</version>
+		    <scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
+		<dependency>
+		    <groupId>io.qameta.allure</groupId>
+		    <artifactId>allure-cucumber7-jvm</artifactId>
+		    <version>2.28.1</version>
+		</dependency>
 	</dependencies>
+	<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>messages</artifactId>
+            <version>24.1.0</version> <!-- Match what cucumber-core wants -->
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
 
 	<build>
 		<plugins>
@@ -76,15 +100,14 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>3.2.5</version>
 						<configuration>
-							<parallel>suites</parallel>
-							<threadCount>10</threadCount>
+							<parallel>methods</parallel>
+							<threadCount>4</threadCount>
 							<includes>
-								<include>*browser/*Runner.java</include>
+								<include>**/*RemoteRunner.java</include>
 							</includes>
 							<forkCount>10</forkCount>
 						</configuration>
 					</plugin>
-
 				</plugins>
 			</build>
 		</profile>

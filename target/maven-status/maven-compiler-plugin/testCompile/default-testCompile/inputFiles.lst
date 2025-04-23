@@ -1,6 +1,7 @@
-C:\Users\binit\eclipse-workspace\ECommerceSiteAutomation\src\test\java\runner\ecommerce\EcommerceRunner.java
-C:\Users\binit\eclipse-workspace\ECommerceSiteAutomation\src\test\java\runner\tutorial\TutorialRunner.java
-C:\Users\binit\eclipse-workspace\ECommerceSiteAutomation\src\test\java\definition\steps\StepDefinitions.java
-C:\Users\binit\eclipse-workspace\ECommerceSiteAutomation\src\test\java\definition\steps\TutorialSteps.java
-C:\Users\binit\eclipse-workspace\ECommerceSiteAutomation\src\test\java\runner\browser\EdgeRunner.java
-C:\Users\binit\eclipse-workspace\ECommerceSiteAutomation\src\test\java\runner\browser\FirefoxRunner.java
+C:\Users\binit\eclipse-workspace\EcommerceRunner\src\test\java\runner\ecommerce\ParallelRunner.java
+C:\Users\binit\eclipse-workspace\EcommerceRunner\src\test\java\definition\steps\Hooks.java
+C:\Users\binit\eclipse-workspace\EcommerceRunner\src\test\java\runner\ecommerce\parallel\EdgeRemoteRunner.java
+C:\Users\binit\eclipse-workspace\EcommerceRunner\src\test\java\runner\ecommerce\parallel\ChromeRemoteRunner.java
+C:\Users\binit\eclipse-workspace\EcommerceRunner\src\test\java\runner\ecommerce\parallel\FirefoxRemoteRunner.java
+C:\Users\binit\eclipse-workspace\EcommerceRunner\src\test\java\definition\steps\StepDefinitions.java
+C:\Users\binit\eclipse-workspace\EcommerceRunner\src\test\java\runner\ecommerce\EcommerceRunner.java
